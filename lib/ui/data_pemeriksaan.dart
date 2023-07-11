@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:zen_colposcope/ui/home_page.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:zen_colposcope/ui/home_page.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zen_colposcope/models/pasien_data.dart';
 
 const List<TabItem> navItems = [
   TabItem(
@@ -34,27 +37,14 @@ class DataPemeriksaanScreen extends StatefulWidget {
 
 class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
   int visit = 1;
-
-  var _currencies = [
-    "Food",
-    "Transport",
-    "Personal",
-    "Shopping",
-    "Medical",
-    "Rent",
-    "Movie",
-    "Salary"
-  ];
+  PasienData pasienData = PasienData();
+  TextEditingController namaPasienController = TextEditingController();
+  TextEditingController nomorHpPasienController = TextEditingController();
 
   final List<Map> pilihanBahasa = [
     {'id': 0, 'bahasa': 'Bahasa Indonesia', 'isSelected': true},
     {'id': 1, 'bahasa': 'English', 'isSelected': false},
   ];
-
-  final namaPasienController = TextEditingController();
-  final tanggalLahirController = TextEditingController();
-  final maritalStatusControleer = TextEditingController();
-  final nomorTelepon = TextEditingController();
 
   Future<void> _dialogUbahBahasa(BuildContext context) {
     print('dialog');
@@ -116,6 +106,16 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   static const IconData paperplane = IconData(0xf733);
   @override
   Widget build(BuildContext context) {
@@ -169,7 +169,11 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                  onPressed: () => print('kirim'),
+                  onPressed: () {
+                    // save to database
+                    pasienData.namaPasien = namaPasienController.text;
+                    pasienData.nomorHpPasien = nomorHpPasienController.text;
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -238,9 +242,8 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
-                    // controller: ,
-                    style: TextStyle(color: Colors.redAccent),
+                  child: TextFormField(
+                    controller: namaPasienController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
@@ -259,14 +262,15 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
                       prefixIcon: Icon(Icons.date_range_outlined),
                       border: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
                       ),
                       hintText: 'Tanggal Lahir Pasien',
                     ),
@@ -278,7 +282,7 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
@@ -296,7 +300,7 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
@@ -314,7 +318,7 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
@@ -332,7 +336,7 @@ class _DataPemeriksaanState extends State<DataPemeriksaanScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextField(
+                  child: TextFormField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white.withOpacity(0.5),
