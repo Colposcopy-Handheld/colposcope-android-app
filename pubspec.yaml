@@ -16,6 +16,11 @@ dependencies:
   flutter_screenutil: ^5.7.0
   flutter_native_splash: ^2.2.19
   cupertino_icons: ^1.0.5
+  camera: ^0.10.5
+  riverpod: ^2.3.6
+  video_player: ^2.1.4
+  path_provider: ^2.0.0
+  # opencv_4: ^1.0.0
 
 
 dev_dependencies:

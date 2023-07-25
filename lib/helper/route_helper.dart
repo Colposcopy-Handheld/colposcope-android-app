@@ -8,6 +8,7 @@ import 'package:zen_colposcope/ui/riwayat_data.dart';
 import 'package:zen_colposcope/ui/janji_temu.dart';
 import 'package:zen_colposcope/ui/diagnose_page.dart';
 import 'package:zen_colposcope/ui/change_password.dart';
+import 'package:zen_colposcope/ui/camera/camera_page.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -30,6 +31,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => const DiagnosePage());
       case '/changePassword':
         return MaterialPageRoute(builder: (_) => const ChangePassword());
+      case '/cameraPage':
+        return MaterialPageRoute(builder: (_) => const CameraPage());
 
       default:
         return MaterialPageRoute(

@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                   context,
                   'Camera',
                   Icons.camera_alt_rounded,
-                  '/',
+                  '/cameraPage',
                 ),
               ],
             ),
